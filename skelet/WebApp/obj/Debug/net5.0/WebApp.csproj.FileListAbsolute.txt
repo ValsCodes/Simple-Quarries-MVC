@@ -583,7 +583,6 @@ C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Ar
 C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Views\RoleManager\Index.cshtml.g.cs
 C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -601,3 +600,11 @@ C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\WebApp.d
 C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\ref\WebApp.dll
 C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\WebApp.pdb
 C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\WebApp.genruntimeconfig.cache
+C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Views\Orders\Create.cshtml.g.cs
+C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Views\Orders\Delete.cshtml.g.cs
+C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Views\Orders\Details.cshtml.g.cs
+C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Views\Orders\Edit.cshtml.g.cs
+C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Views\Orders\Index.cshtml.g.cs
+C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Views\Technition\Details.cshtml.g.cs
+C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Views\Technition\Edit.cshtml.g.cs
+C:\Users\ivail\Documents\GitHub\Klimatik\skelet\WebApp\obj\Debug\net5.0\Razor\Views\Technition\Index.cshtml.g.cs

@@ -10,8 +10,8 @@ using WebApp.Data;
 namespace WebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220501195816_Order_User")]
-    partial class Order_User
+    [Migration("20220501210406_User_Orders")]
+    partial class User_Orders
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -291,11 +291,11 @@ namespace WebApp.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ID_User")
-                        .HasColumnType("int");
+                    b.Property<string>("ID_User")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Id_Technition")
-                        .HasColumnType("int");
+                    b.Property<string>("Id_Technition")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Picture")
                         .HasColumnType("varbinary(max)");

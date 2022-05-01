@@ -21,7 +21,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-       // [Authorize(Roles = "Administrator")]
+      //  [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> AddRole(string roleName)
         {
             if (roleName != null)

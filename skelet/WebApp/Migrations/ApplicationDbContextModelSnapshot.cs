@@ -289,11 +289,11 @@ namespace WebApp.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ID_User")
-                        .HasColumnType("int");
+                    b.Property<string>("ID_User")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Id_Technition")
-                        .HasColumnType("int");
+                    b.Property<string>("Id_Technition")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Picture")
                         .HasColumnType("varbinary(max)");

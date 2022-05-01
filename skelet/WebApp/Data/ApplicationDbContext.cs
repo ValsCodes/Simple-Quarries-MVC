@@ -5,12 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using WebApp.Models;
+using WebApp.Controllers;
 
 namespace WebApp.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public virtual DbSet<Orders> Orders { get; set; }
+        public IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

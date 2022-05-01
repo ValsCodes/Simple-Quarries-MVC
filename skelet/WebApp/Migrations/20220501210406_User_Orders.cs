@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApp.Migrations
 {
-    public partial class Order_User : Migration
+    public partial class User_Orders : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,13 +45,13 @@ namespace WebApp.Migrations
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ID_User = table.Column<int>(type: "int", nullable: false),
+                    ID_User = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProblemDesc = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Address = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Picture = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Id_Technition = table.Column<int>(type: "int", nullable: false)
+                    Id_Technition = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

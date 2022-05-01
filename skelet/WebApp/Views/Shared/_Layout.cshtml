@@ -6,6 +6,33 @@
     <title>@ViewData["Title"] - WebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        html {
+            background-color: #ffff99;
+        }
+
+        li, a, button {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            color: #edf0f1;
+            text-decoration: none;
+        }
+
+
+
+        button {
+            padding: 9px 25px;
+            background-color: rgba(0,136,169,1) border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease 0s;
+        }
+
+            button:hover {
+                background-color: rgba(0,136,169,0.8)
+            }
+    </style>
 </head>
 <body>
     <header>
@@ -21,10 +48,20 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                         @if (User.IsInRole("Administrator"))
+                        @if (User.IsInRole("Tech") == false)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Index">Orders</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Tech"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Technition" asp-action="Index">Technition</a>
+                            </li>
+                        }
+                        {
+                        @if (User.IsInRole("Administrator"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="RoleManager" asp-action="Index">RoleManager</a>
