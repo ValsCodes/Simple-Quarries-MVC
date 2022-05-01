@@ -13,7 +13,7 @@ namespace WebApp.Controllers
         {
             _roleManager = roleManager;
         }
-        [Authorize(Roles = "Administrator")]
+       // [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Index()
         {
             var roles = await _roleManager.Roles.ToListAsync();
@@ -21,7 +21,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrator")]
+       // [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> AddRole(string roleName)
         {
             if (roleName != null)

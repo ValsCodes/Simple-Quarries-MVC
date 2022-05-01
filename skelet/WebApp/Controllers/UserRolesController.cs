@@ -19,7 +19,7 @@ namespace WebApp.Controllers
             _roleManager = roleManager;
             _userManager = userManager;
         }
-         [Authorize(Roles = "Administrator")]
+       //  [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Index()
         {
             var users = await _userManager.Users.ToListAsync();
@@ -36,7 +36,7 @@ namespace WebApp.Controllers
             }
             return View(userRolesViewModel);
         }
-        [Authorize(Roles = "Administrator")]
+      //  [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Manage(string userId)
         {
             ViewBag.userId = userId;
@@ -68,7 +68,7 @@ namespace WebApp.Controllers
             return View(model);
         }
         [HttpPost]
-        [Authorize(Roles = "Administrator")]
+       // [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Manage(List<ManageUserRolesViewModel> model, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
