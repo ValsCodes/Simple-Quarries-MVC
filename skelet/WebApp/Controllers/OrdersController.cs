@@ -78,7 +78,6 @@ namespace WebApp.Controllers
             if (ModelState.IsValid)
             {
                 orders.ID_User = memberId;
-
                 _context.Add(orders);
                 await _context.SaveChangesAsync();
                 ViewData["UserId"] = new SelectList(_context.Orders, "UserId", "User.Name");

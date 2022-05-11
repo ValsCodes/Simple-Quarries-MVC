@@ -14,6 +14,18 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="OrderId" />
             <div class="form-group">
+                <label asp-for="ID_User" class="control-label"></label>
+                @if (User.IsInRole("Administrator"))
+                {
+                    <input asp-for="ID_User" class="form-control"/>
+                }
+                else
+                {
+                    <input asp-for="ID_User" class="form-control" disabled />
+                }
+                <span asp-validation-for="ID_User" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="ProblemDesc" class="control-label"></label>
                 <input asp-for="ProblemDesc" class="form-control" />
                 <span asp-validation-for="ProblemDesc" class="text-danger"></span>
@@ -36,9 +48,12 @@
             <div class="form-group">
                 <select name="Status" id="Status">
                     <option value="изчакваща">изчакваща</option>
-                    <option value="очаква посещение">очаква посещение</option>
-                    <option value="в прогрес">в прогрес</option>
-                    <option value="приключена">приключена</option>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <option value="очаква посещение">очаква посещение</option>
+                        <option value="в прогрес">в прогрес</option>
+                        <option value="приключена">приключена</option>
+                    }
                 </select>
             </div>
             <div class="form-group">

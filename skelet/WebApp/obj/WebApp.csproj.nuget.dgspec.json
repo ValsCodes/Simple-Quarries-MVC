@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ivail\\Documents\\GitHub\\Klimatik\\skelet\\WebApp\\WebApp.csproj": {}
+    "C:\\Users\\Val\\Documents\\GitHub\\Klimatik\\skelet\\WebApp\\WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ivail\\Documents\\GitHub\\Klimatik\\skelet\\WebApp\\WebApp.csproj": {
+    "C:\\Users\\Val\\Documents\\GitHub\\Klimatik\\skelet\\WebApp\\WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ivail\\Documents\\GitHub\\Klimatik\\skelet\\WebApp\\WebApp.csproj",
+        "projectUniqueName": "C:\\Users\\Val\\Documents\\GitHub\\Klimatik\\skelet\\WebApp\\WebApp.csproj",
         "projectName": "WebApp",
-        "projectPath": "C:\\Users\\ivail\\Documents\\GitHub\\Klimatik\\skelet\\WebApp\\WebApp.csproj",
-        "packagesPath": "C:\\Users\\ivail\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ivail\\Documents\\GitHub\\Klimatik\\skelet\\WebApp\\obj\\",
+        "projectPath": "C:\\Users\\Val\\Documents\\GitHub\\Klimatik\\skelet\\WebApp\\WebApp.csproj",
+        "packagesPath": "C:\\Users\\Val\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Val\\Documents\\GitHub\\Klimatik\\skelet\\WebApp\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ivail\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Val\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -89,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.212\\RuntimeIdentifierGraph.json"
         }
       }
     }
