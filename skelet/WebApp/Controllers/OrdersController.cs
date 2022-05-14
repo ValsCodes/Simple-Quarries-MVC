@@ -15,17 +15,19 @@ namespace WebApp.Controllers
     public class OrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private UserManager<ApplicationUser> userManager;
+        private UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public OrdersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public OrdersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
-            this.userManager = userManager;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public async Task<IActionResult> Index()
         {
-            var id = (await userManager.GetUserAsync(User)).Id;
+            var id = (await _userManager.GetUserAsync(User)).Id;
             
             if (User.IsInRole("Administrator"))
             {
@@ -63,6 +65,8 @@ namespace WebApp.Controllers
             return View(orders);
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         [HttpGet]
         public IActionResult Create()
         {
@@ -73,23 +77,36 @@ namespace WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Orders orders)
         {
-            var memberId = (await userManager.GetUserAsync(User)).Id;
+            var memberId = (await _userManager.GetUserAsync(User)).Id;
 
             if (ModelState.IsValid)
             {
                 orders.ID_User = memberId;
                 _context.Add(orders);
                 await _context.SaveChangesAsync();
-                ViewData["UserId"] = new SelectList(_context.Orders, "UserId", "User.Name");
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Orders, "UserId", "User.Name");
             return View("Index");
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
+            var users = await _userManager.Users.ToListAsync();
+            var userRolesViewModel = new List<UserRolesViewModel>();
+            foreach (ApplicationUser user in users)
+            {
+                var thisViewModel = new UserRolesViewModel();
+                thisViewModel.UserId = user.Id;
+                thisViewModel.Email = user.Email;
+                thisViewModel.FirstName = user.FirstName;
+                thisViewModel.LastName = user.LastName;
+                thisViewModel.Roles = await GetUserRoles(user);
+                userRolesViewModel.Add(thisViewModel);
+            }
+
             if (id == null)
             {
                 return NotFound();
@@ -100,7 +117,8 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Orders, "Users", "Users");
+
+         //   ViewData["Tech"] = new SelectList(users.Where(x => (await GetUserRoles(x)) == "Tech"), "UserId");
             return View(orders);
         }
 
@@ -131,13 +149,12 @@ namespace WebApp.Controllers
                         throw;
                     }
                 }
-                ViewData["UserId"] = new SelectList(_context.Orders, "UserId", "User.Name");
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Orders, "Users", "Users");
             return View(orders);
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -169,6 +186,11 @@ namespace WebApp.Controllers
         private bool OrdersExists(int id)
         {
             return _context.Orders.Any(e => e.OrderId == id);
+        }
+
+        private async Task<List<string>> GetUserRoles(ApplicationUser user)
+        {
+            return new List<string>(await _userManager.GetRolesAsync(user));
         }
     }
 }
