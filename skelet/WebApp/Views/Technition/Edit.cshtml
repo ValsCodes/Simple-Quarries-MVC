@@ -46,6 +46,10 @@
                     <option value="приключена">приключена</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label asp-for="Id_Technition" class="control-label">Technition</label>
+                <select asp-for="Id_Technition" class="form-control" asp-items="ViewBag.Tech"></select>
+            </div>
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

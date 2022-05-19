@@ -14,18 +14,42 @@ namespace WebApp.Controllers
     public class TechnitionController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private UserManager<ApplicationUser> userManager;
+        private UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public TechnitionController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public TechnitionController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
-            this.userManager = userManager;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public async Task<IActionResult> Index()
         {
-            var id = (await userManager.GetUserAsync(User)).Id;
-            return View(await _context.Orders.Where(x => x.Id_Technition == id).ToListAsync());
+                var id = (await _userManager.GetUserAsync(User)).Id;
+                var users = await _userManager.Users.ToListAsync();
+                var userRolesViewModel = new List<UserRolesViewModel>();
+
+                foreach (ApplicationUser user in users)
+                {
+                    var thisViewModel = new UserRolesViewModel();
+                    thisViewModel.UserId = user.Id;
+                    thisViewModel.Email = user.Email;
+                    thisViewModel.UserName = user.UserName;
+                    thisViewModel.FirstName = user.FirstName;
+                    thisViewModel.LastName = user.LastName;
+                    thisViewModel.Roles = await GetUserRoles(user);
+                    userRolesViewModel.Add(thisViewModel);
+                }
+
+                if (User.IsInRole("Tech"))
+                {
+                    var techid = users.Find(x => x.Id == id).UserName.ToString();
+                    IEnumerable<Orders> objList = _context.Orders.Where(x => x.Id_Technition == techid);
+                    return View(objList);
+                }
+                return View();
+            
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -97,5 +121,9 @@ namespace WebApp.Controllers
         {
             return _context.Orders.Any(e => e.OrderId == id);
         }
-    }
+            private async Task<List<string>> GetUserRoles(ApplicationUser user)
+            {
+                return new List<string>(await _userManager.GetRolesAsync(user));
+            }
+        }
 }

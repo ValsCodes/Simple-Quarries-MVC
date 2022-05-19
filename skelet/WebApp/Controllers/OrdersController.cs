@@ -28,15 +28,31 @@ namespace WebApp.Controllers
         public async Task<IActionResult> Index()
         {
             var id = (await _userManager.GetUserAsync(User)).Id;
-            
+
+            var users = await _userManager.Users.ToListAsync();
+            var userRolesViewModel = new List<UserRolesViewModel>();
+            foreach (ApplicationUser user in users)
+            {
+                var thisViewModel = new UserRolesViewModel();
+                thisViewModel.UserId = user.Id;
+                thisViewModel.Email = user.Email;
+                thisViewModel.UserName = user.UserName;
+                thisViewModel.FirstName = user.FirstName;
+                thisViewModel.LastName = user.LastName;
+                thisViewModel.Roles = await GetUserRoles(user);
+                userRolesViewModel.Add(thisViewModel);
+            }
+
+
+            if (User.IsInRole("Tech"))
+            {
+                var techid = users.Find(x => x.Id == id).UserName.ToString();
+                IEnumerable<Orders> objList = _context.Orders.Where(x => x.Id_Technition == techid);
+                return View(objList);
+            }
             if (User.IsInRole("Administrator"))
             {
                 IEnumerable<Orders> objList = _context.Orders;
-                return View(objList);
-            }
-            if (User.IsInRole("Tech"))
-            {
-                IEnumerable<Orders> objList = _context.Orders.Where(x => x.Id_Technition == id);
                 return View(objList);
             }
             if(User.IsInRole("Customer"))
@@ -70,7 +86,7 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Orders, "UserId", "User.Name");
+          //  ViewData["UserId"] = new SelectList(_context.Orders, "UserId");
             return View();
         }
         [HttpPost]
@@ -81,7 +97,7 @@ namespace WebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                orders.ID_User = memberId;
+                orders.ID_User = memberId; //wtf
                 _context.Add(orders);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -101,6 +117,7 @@ namespace WebApp.Controllers
                 var thisViewModel = new UserRolesViewModel();
                 thisViewModel.UserId = user.Id;
                 thisViewModel.Email = user.Email;
+                thisViewModel.UserName = user.UserName;
                 thisViewModel.FirstName = user.FirstName;
                 thisViewModel.LastName = user.LastName;
                 thisViewModel.Roles = await GetUserRoles(user);
@@ -118,7 +135,7 @@ namespace WebApp.Controllers
                 return NotFound();
             }
 
-         //   ViewData["Tech"] = new SelectList(users.Where(x => (await GetUserRoles(x)) == "Tech"), "UserId");
+            ViewData["Tech"] = new SelectList(users);
             return View(orders);
         }
 
