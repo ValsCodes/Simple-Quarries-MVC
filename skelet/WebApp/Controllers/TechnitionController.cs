@@ -72,6 +72,19 @@ namespace WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
+            var users = await _userManager.Users.ToListAsync();
+            var userRolesViewModel = new List<UserRolesViewModel>();
+            foreach (ApplicationUser user in users)
+            {
+                var thisViewModel = new UserRolesViewModel();
+                thisViewModel.UserId = user.Id;
+                thisViewModel.Email = user.Email;
+                thisViewModel.UserName = user.UserName;
+                thisViewModel.FirstName = user.FirstName;
+                thisViewModel.LastName = user.LastName;
+                thisViewModel.Roles = await GetUserRoles(user);
+                userRolesViewModel.Add(thisViewModel);
+            }
             if (id == null)
             {
                 return NotFound();
@@ -82,13 +95,15 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
+            ViewData["Tech1"] = new SelectList(users);
             return View(orders);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderId,ID_User,ProblemDesc,Address,Picture,Date,Status,Id_Technition")] Orders orders)
+        public async Task<IActionResult> Edit(int id, Orders orders)
         {
+
             if (id != orders.OrderId)
             {
                 return NotFound();
