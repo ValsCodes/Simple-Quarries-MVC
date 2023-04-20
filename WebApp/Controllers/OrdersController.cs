@@ -92,9 +92,6 @@ namespace WebApp.Controllers
             var userRolesViewModel = new List<UserRolesViewModel>();
             foreach (ApplicationUser user in users)
             {
-                List<string> roles = await GetUserRoles(user);
-                if (roles.Contains("Tech") == true)
-                {
                     var thisViewModel = new UserRolesViewModel();
                     thisViewModel.UserId = user.Id;
                     thisViewModel.Email = user.Email;
@@ -103,7 +100,6 @@ namespace WebApp.Controllers
                     thisViewModel.LastName = user.LastName;
                     thisViewModel.Roles = await GetUserRoles(user);
                     userRolesViewModel.Add(thisViewModel);
-                }
             }
 
             if (id == null)
@@ -116,8 +112,7 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-
-            ViewData["Tech"] = new SelectList(users);
+           
             return View(orders);
         }
 
